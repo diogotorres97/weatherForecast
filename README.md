@@ -1,25 +1,32 @@
-# ReduxSimpleStarter
+## weatherForecast
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
+This project was developed for a summer internship application challenge. 
 
-### Getting Started
+The objective of the project was to develop a Single Page Application with [React.js](https://reactjs.org/) and [Redux](https://redux.js.org).
 
-There are two methods for getting started with this repo.
-
-#### Familiar with Git?
-Checkout this repo, install dependencies, then start the gulp process with the following:
-
-```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
-> npm install
-> npm start
-```
-
-#### Not Familiar with Git?
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
-
-```
-> npm install
-> npm start
-```
+The requested features were:
+ - [X] Use of Weather Forecast API;
+ - [X] [Prototype](https://dribbble.com/shots/862354-Mayan-Forecast)
+ 
+ Additional Features:
+ - [X] Search for cities and returned their location with Google Maps API;
+ 
+ ## Setup
+ 
+ Make sure you have [npm](https://www.npmjs.com/get-npm) installed.
+ Clone this repository, cd into it and run:
+ 
+ ```shell
+ npm install
+ npm start
+ ```
+ 
+ ## Extra: Learning React
+ 
+ As boilerplate I used the following project:
+ [ReduxSimpleStarter](https://github.com/StephenGrider/ReduxSimpleStarter)
+ 
+ And learned the basics from [Redux](https://www.udemy.com/react-redux/)
+ 
+ ## Author
+ * [@diogotorres97](https://github.com/diogotorres97)
