@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Chart from '../components/chart';
 import moment from 'moment';
-import Moment from 'react-moment';
 
 import GoogleMap from '../components/google-map';
 
@@ -11,7 +10,6 @@ class WeatherList extends Component {
         super(props);
 
         this.renderWeather = this.renderWeather.bind(this);
-        // this.renderForecast = this.renderForecast.bind(this);
     }
     parseWeather(cityData){
         let counter = 0;
@@ -59,8 +57,8 @@ class WeatherList extends Component {
             const date = value[0];
             const icon = value[1].icon;
             const temp = value[1].temp;
-                                return (<td key={date}><Chart date={date} temp={temp} icon={icon}/></td>)
-                                });
+            return (<td key={date}><Chart date={date} temp={temp} icon={icon}/></td>)
+            });
     }
     
     renderWeather(cityData) {
@@ -68,12 +66,10 @@ class WeatherList extends Component {
         const {lon, lat } = cityData.city.coord;
         const forecast = this.parseWeather(cityData);
         const days_forecast = this.renderForecast(forecast);
-        console.log(days_forecast);
 
         return (
         <tr key={name}>
             <td>
-            {name}
             <GoogleMap lat={lat} lon={lon}/>
             </td>
             {days_forecast}
@@ -87,9 +83,11 @@ class WeatherList extends Component {
             <thead>
             <tr>
             <th> City </th>
-            <th> Temperature (ºC) </th>
-            <th> Pressure (hPA) </th>
-            <th> Humidity (%) </th>
+            <th> {moment().format("dddd, Do MMMM")} </th>
+            <th> {moment().add(1,'days').format("dddd, Do MMMM")} </th>
+            <th> {moment().add(2,'days').format("dddd, Do MMMM")} </th>
+            <th> {moment().add(3,'days').format("dddd, Do MMMM")} </th>
+            <th> {moment().add(4,'days').format("dddd, Do MMMM")} </th>
             </tr>
             </thead>
             <tbody>
