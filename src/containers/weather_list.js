@@ -62,6 +62,9 @@ class WeatherList extends Component {
     }
     
     renderWeather(cityData) {
+        if(!cityData)
+            return;
+
         const name = cityData.city.name;
         const {lon, lat } = cityData.city.coord;
         const forecast = this.parseWeather(cityData);
