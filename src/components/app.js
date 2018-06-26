@@ -9,6 +9,7 @@ export default class App extends Component {
       <div>
         <SearchBar/>
         <WeatherList/>
+        <span>Note: The temperature of each day is calculated by averaging the temperatures of each day.</span>
       </div>
     );
   }
