@@ -20,6 +20,9 @@ The requested features were:
  npm install
  npm start
  ```
+ ## Preview
+ 
+ [<img src="/docs/main_page.png">](/docs/main_page.png)   
  
  ## Extra: Learning React
  
