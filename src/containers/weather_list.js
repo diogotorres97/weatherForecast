@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Chart from '../components/chart';
+import ForecastData from '../components/forecast-data';
 import moment from 'moment';
 
 import GoogleMap from '../components/google-map';
@@ -11,8 +11,10 @@ class WeatherList extends Component {
 
         this.renderWeather = this.renderWeather.bind(this);
     }
-    parseWeather(cityData){
+
+    parseWeather(cityData) {
         let counter = 0;
+
         let forecast = cityData.list.reduce((acc, currvalue) => {
             let curr_date = moment(currvalue.dt_txt).format('YYYY-MM-DD');
             let acum_temp = currvalue.main.temp;
@@ -22,6 +24,7 @@ class WeatherList extends Component {
             if(acc[curr_date]) {
                 acum_temp += acc[curr_date].acum_temp;
                 counter++;
+
                 weather = acc[curr_date].weather;
                 if(weather.has(curr_weather.icon)){
                     weather.set(curr_weather.icon, weather.get(curr_weather.icon) + 1);
@@ -53,11 +56,11 @@ class WeatherList extends Component {
     }
 
     renderForecast(forecast) {
-        return forecast.map((value, index) => {
+        return forecast.map((value) => {
             const date = value[0];
             const icon = value[1].icon;
             const temp = value[1].temp;
-            return (<td key={date}><Chart date={date} temp={temp} icon={icon}/></td>)
+            return (<td key={date}><ForecastData date={date} temp={temp} icon={icon}/></td>)
             });
     }
     
