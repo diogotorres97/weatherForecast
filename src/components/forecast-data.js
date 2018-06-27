@@ -9,4 +9,4 @@ export default (props) => {
             <h3>{Math.round(props.temp)}ºC</h3>
         </div>
     );
-} 
+}; 

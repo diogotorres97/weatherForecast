@@ -40,19 +40,19 @@ class WeatherList extends Component {
                 ...acc, 
                 [curr_date]: {acum_temp, counter, weather},
             };
-          }, {});
+        }, {});
 
-          let forecastParsed = Object.entries(forecast).map((value) => {
-              let date = value[0];
-              let acum_temp = value[1].acum_temp;
-              let counter = value[1].counter;
-              let weather = value[1].weather;
-              weather = new Map([...weather.entries()].sort((a, b) => b[1] - a[1]));
+        let forecastParsed = Object.entries(forecast).map((value) => {
+            let date = value[0];
+            let acum_temp = value[1].acum_temp;
+            let counter = value[1].counter;
+            let weather = value[1].weather;
+            weather = new Map([...weather.entries()].sort((a, b) => b[1] - a[1]));
 
-              return [date, {temp: acum_temp/counter, icon: weather.keys().next().value}];
-          });
+            return [date, {temp: acum_temp/counter, icon: weather.keys().next().value}];
+        });
           
-          return forecastParsed;
+        return forecastParsed;
     }
 
     renderForecast(forecast, days) {
@@ -60,15 +60,15 @@ class WeatherList extends Component {
             const date = value[0];
             const icon = value[1].icon;
             const temp = value[1].temp;
-            return (<td key={date}><ForecastData date={date} temp={temp} icon={icon}/></td>)
-            });
+            return (<td key={date}><ForecastData date={date} temp={temp} icon={icon}/></td>);
+        });
     }
 
     renderHeaderDays(days) {
         let header = Array.apply(null, Array(days));
         return header.map((value, index) => {
             let date = moment().add(index,'days');
-            return (<th key={date}> {date.format("dddd, Do MMMM")} </th>) ;
+            return (<th key={date}> {date.format('dddd, Do MMMM')} </th>) ;
         });
     }
     
@@ -82,27 +82,27 @@ class WeatherList extends Component {
         const days_forecast = this.renderForecast(forecast, 5);
 
         return (
-        <tr key={name}>
-            <td><GoogleMap lat={lat} lon={lon}/></td>
-            {days_forecast}
-        </tr>
+            <tr key={name}>
+                <td><GoogleMap lat={lat} lon={lon}/></td>
+                {days_forecast}
+            </tr>
         );
     }
 
     render() {
         return (
             <table className="table table-hover">
-            <thead>
-            <tr>
-            <th> City </th>
-            {this.renderHeaderDays(5)}
-            </tr>
-            </thead>
-            <tbody>
-                {this.props.weather.map(this.renderWeather)}
-            </tbody>
+                <thead>
+                    <tr>
+                        <th> City </th>
+                        {this.renderHeaderDays(5)}
+                    </tr>
+                </thead>
+                <tbody>
+                    {this.props.weather.map(this.renderWeather)}
+                </tbody>
             </table>
-    );
+        );
     }
 }
 
