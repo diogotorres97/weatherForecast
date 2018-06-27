@@ -55,13 +55,21 @@ class WeatherList extends Component {
           return forecastParsed;
     }
 
-    renderForecast(forecast) {
-        return forecast.map((value) => {
+    renderForecast(forecast, days) {
+        return forecast.slice(0, days).map((value) => {
             const date = value[0];
             const icon = value[1].icon;
             const temp = value[1].temp;
             return (<td key={date}><ForecastData date={date} temp={temp} icon={icon}/></td>)
             });
+    }
+
+    renderHeaderDays(days) {
+        let header = Array.apply(null, Array(days));
+        return header.map((value, index) => {
+            let date = moment().add(index,'days');
+            return (<th key={date}> {date.format("dddd, Do MMMM")} </th>) ;
+        });
     }
     
     renderWeather(cityData) {
@@ -71,13 +79,11 @@ class WeatherList extends Component {
         const name = cityData.city.name;
         const {lon, lat } = cityData.city.coord;
         const forecast = this.parseWeather(cityData);
-        const days_forecast = this.renderForecast(forecast);
+        const days_forecast = this.renderForecast(forecast, 5);
 
         return (
         <tr key={name}>
-            <td>
-            <GoogleMap lat={lat} lon={lon}/>
-            </td>
+            <td><GoogleMap lat={lat} lon={lon}/></td>
             {days_forecast}
         </tr>
         );
@@ -85,22 +91,18 @@ class WeatherList extends Component {
 
     render() {
         return (
-            <table className = "table table-hover">
+            <table className="table table-hover">
             <thead>
             <tr>
             <th> City </th>
-            <th> {moment().format("dddd, Do MMMM")} </th>
-            <th> {moment().add(1,'days').format("dddd, Do MMMM")} </th>
-            <th> {moment().add(2,'days').format("dddd, Do MMMM")} </th>
-            <th> {moment().add(3,'days').format("dddd, Do MMMM")} </th>
-            <th> {moment().add(4,'days').format("dddd, Do MMMM")} </th>
+            {this.renderHeaderDays(5)}
             </tr>
             </thead>
             <tbody>
                 {this.props.weather.map(this.renderWeather)}
             </tbody>
             </table>
-    )
+    );
     }
 }
 
