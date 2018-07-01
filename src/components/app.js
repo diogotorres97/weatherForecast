@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import Alert from 'react-s-alert';
+import 'react-s-alert/dist/s-alert-default.css';
+import '../../style/style.css';
 
 import SearchBar from '../containers/search_bar';
 import WeatherList from '../containers/weather_list';
